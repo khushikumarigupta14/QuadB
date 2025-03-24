@@ -49,19 +49,29 @@ const tasksSlice = createSlice({
       reducer(state, action) {
         state.items.push(action.payload);
       },
-      prepare({ title, priority, location }) {
+      prepare({ title, priority, location, dueDate }) {
         return {
           payload: {
             id: Date.now(),
             title,
             priority: priority || "medium",
-            location,
+            location: location || "",
+            dueDate: dueDate || null,
             completed: false,
+            pinned: false,
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString(),
           },
         };
       },
+    },
+    togglePinnedTask: (state, action) => {
+      const taskId = action.payload;
+      const task = state.items.find((task) => task.id === taskId);
+      if (task) {
+        task.pinned = !task.pinned;
+        task.updatedAt = new Date().toISOString();
+      }
     },
     toggleTask(state, action) {
       const task = state.items.find((task) => task.id === action.payload);
@@ -91,15 +101,29 @@ const tasksSlice = createSlice({
       state.currentlyEditing = null;
     },
     updateTask(state, action) {
-      const { id, title, priority, location } = action.payload;
+      const { id, title, priority, location, dueDate } = action.payload;
       const task = state.items.find((task) => task.id === id);
       if (task) {
         task.title = title;
         task.priority = priority;
-        task.location = location;
+        task.location = location || "";
+        task.dueDate = dueDate || null;
         task.updatedAt = new Date().toISOString();
         state.currentlyEditing = null;
       }
+    },
+    // Optional: You might want to add these for batch operations
+    pinAllTasks(state) {
+      state.items.forEach((task) => {
+        task.pinned = true;
+        task.updatedAt = new Date().toISOString();
+      });
+    },
+    unpinAllTasks(state) {
+      state.items.forEach((task) => {
+        task.pinned = false;
+        task.updatedAt = new Date().toISOString();
+      });
     },
   },
   extraReducers(builder) {
@@ -131,6 +155,21 @@ export const {
   startEditingTask,
   cancelEditingTask,
   updateTask,
+  togglePinnedTask,
+  pinAllTasks,
+  unpinAllTasks,
 } = tasksSlice.actions;
+
+// Selectors
+export const selectAllTasks = (state) => state.tasks.items;
+export const selectTaskById = (id) => (state) =>
+  state.tasks.items.find((task) => task.id === id);
+export const selectWeatherStatus = (taskId) => (state) =>
+  state.tasks.weatherStatus[taskId];
+export const selectCurrentlyEditing = (state) => state.tasks.currentlyEditing;
+export const selectPinnedTasks = (state) =>
+  state.tasks.items.filter((task) => task.pinned);
+export const selectUnpinnedTasks = (state) =>
+  state.tasks.items.filter((task) => !task.pinned);
 
 export default tasksSlice.reducer;
