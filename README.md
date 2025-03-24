@@ -1,12 +1,48 @@
-# React + Vite
+# QuadB Advance Todo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+QuadB Advance Todo is a modern and user-friendly task management application designed to help users organize their daily tasks efficiently.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Add, Edit, and Delete Tasks** – Easily manage your to-do list.
+- **Real-time Task Updates** – Get instant changes reflected.
+- **Intuitive User Interface** – Simple and clean design for better usability.
+- **Task Prioritization** – Organize tasks based on importance.
+- **Seamless Task Management** – Effortlessly track your progress.
+- **Fetch Weather** – Get real-time weather updates.
+- **Search & Filter** – Quickly find tasks using search and filter options.
+- **Date Filter** – Search tasks by specific dates.
+- **Login & Logout** – Secure authentication for user accounts.
+- **Priority Management** – Set task priorities for better organization.
+- **Location-based Weather** – Show weather updates based on user location.
+- **More Features** – Continuous enhancements to improve productivity.
 
-## Expanding the ESLint configuration
+## 🛠️ Tools & Technologies
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Frontend:** React.js, Tailwind CSS,vite,lucide react,react-router-dom,react-calendar,etc.,
+- **State Management:** Redux (if used)
+- **Deployment:** Netlify
+
+## 📌 Live Demo
+[QuadB Advance Todo](https://quadb-advancetodo.netlify.app/)
+
+## 📜 Installation & Usage
+
+```sh
+# Clone the repository
+git clone https://github.com/khushikumarigupta14/QuadB.git
+
+# Navigate to the project directory
+cd QuadB
+
+# Install dependencies
+npm install
+
+# Run the application
+npm run dev
+```
+
+
+
+
+
